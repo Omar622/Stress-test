@@ -25,7 +25,7 @@ All you have to do after downlad this project in your device is:
      - "failed in test i" and "WA in line j" and the expected output and your wrong output.
      - "failed in test i" and "files has no equal sizes" means that two codes does not output the same size of output.
 
-PLZ: make sure you have read how project works section above.
-Note:(if "myCode.cpp" file failed in a test, the program will stop and you can see the test in "input.in" file and the output in "output.out" and the answer in "answer.out").
-Note: there are some functions like "buildHugeNumber" in line 15 in "stressTest.cpp" file, help to build huge random number of n digit.
-      also "randll" in line 23 in "stressTest.cpp" file, help to get random long long.
+  PLZ: make sure you have read how project works section above.
+  Note:(if "myCode.cpp" file failed in a test, the program will stop and you can see the test in "input.in" file and the output in "output.out" and the answer in "answer.out").
+  Note: there are some functions like "buildHugeNumber" in line 15 in "stressTest.cpp" file, help to build huge random number of n digit.
+        also "randll" in line 23 in "stressTest.cpp" file, help to get random long long.
