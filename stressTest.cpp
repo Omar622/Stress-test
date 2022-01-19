@@ -21,7 +21,7 @@ string buildHugeNumber(int n){ // string of random number of n digit
 }
 
 long long randll(){ // random long long
-    return (long long)rand() * rand() * rand*() * rand();
+    return (long long)rand() * rand() * rand() * rand();
 }
 
 void buildTests(){
