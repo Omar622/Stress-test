@@ -13,7 +13,7 @@ project has 6 files:
 
 briefly, in "stressTest.cpp" I make random function refrenced to time of runing file (to differ from time to time), build "myCode.cpp" and "answer.cpp" once, then for number of tests, the project will build random test and run the excuted files and compare the outputs. take care that project compare two outputs as string comparsion (case and space senstive). feel free if you want to take this project and update it.
 
-# How to use the project
+# How to use project
 All you have to do after downlad this project in your device is:
   1. set your code(code you want to test) in file "myCode.cpp".
   2. find and set code that generates the reference answer in file "answer.cpp".
