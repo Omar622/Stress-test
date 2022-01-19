@@ -18,12 +18,12 @@ All you have to do after downlad this project in your device is:
   1. set your code(code you want to test) in file "myCode.cpp".
   2. find and set code that generates the reference answer in file "answer.cpp".
   3. open "stressTest.cpp" file and do this:
-    - set number of tests you want in "tc" variable in line 110. (put on your consideration the time that your machine will take to run the number of tests you put will fit)
-    - write code to build only one random test case in function "buildTests" in line 27.
+     - set number of tests you want in "tc" variable in line 110. (put on your consideration the time that your machine will take to run the number of tests you put will fit)
+     - write code to build only one random test case in function "buildTests" in line 27.
   4. then run "stressTest.cpp" file in the usual way and you will get to each test:
-    - "AC" refers to Accepted (two codes have the same output).
-    - "failed in test i" and "WA in line j" and the expected output and your wrong output.
-    - "failed in test i" and "files has no equal sizes" means that two codes does not output the same size of output.
+     - "AC" refers to Accepted (two codes have the same output).
+     - "failed in test i" and "WA in line j" and the expected output and your wrong output.
+     - "failed in test i" and "files has no equal sizes" means that two codes does not output the same size of output.
 
 PLZ: make sure you have read how project works section above.
 Note:(if "myCode.cpp" file failed in a test, the program will stop and you can see the test in "input.in" file and the output in "output.out" and the answer in "answer.out").
