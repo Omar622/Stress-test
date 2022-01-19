@@ -12,7 +12,7 @@ project has 6 files:
   5) "answer.out" file where "answer.cpp" will print its output in.
   6) "stressTest.cpp" file that control the whole stress test process.
 
-briefly, in "stressTest.cpp" I make random function refrenced to time of runing file (to differ from time to time), build "myCode.cpp" and "answer.cpp" once, then for number of tests, the project will build random test and run the excuted files and compare the outputs. take care that project compare two outputs as *string comparsion* (case and space senstive). feel free if you want to take this project and update it.  
+briefly, in "stressTest.cpp" I make random function refrenced to time of runing file (to differ from time to time), build "myCode.cpp" and "answer.cpp" once, then for number of tests, the project will build random test and run the excuted files and compare the outputs. take care that project compare two outputs as **string comparsion** (case and space senstive). feel free if you want to take this project and update it.  
 
 Note: In the project there is an example of comparing to codes. "myCode.cpp" calculates sum of subarray by prefix sum technique, "answer.cpp" calculates the same by brute force. input is number of test cases in one line and size of array(maximum 100 number) in another line and the array(maximum number is billion) in another line and number of queries in another line and in each line two idices in array refers to the left index and right index you should print the sum of the segment between.
 
