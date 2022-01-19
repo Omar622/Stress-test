@@ -1,12 +1,12 @@
 # Stress Test project
 # Overview
-many and many times in competitve programming when you have a solution got WA(wrong answer) and you do not know why and can not see any problem with your code. Now, you have to do a stress test. Stress test is a simple idea that if you have a code getting WA(wrong answer) or you want to test it - let us call it "myCode file" - and have a code getting the wright answer and never got WA(wrong answer) - let us call it "answer file" - you can simply give them random test cases to both of them and compare the output of each one to another. If the output of "myCode file" differs form "answer file" then you have a test fails "myCode file". This is the simple idea and what our project do. I made this project to help me test my code easily, specially I do competitive programming most of time.
+many and many times in competitve programming when you have a solution got WA(wrong answer) and you do not know why and can not see any problem with your code. Now, you have to do a stress test. Stress test is a simple idea that if you have a code getting WA(wrong answer) or you want to test it - let us call it "myCode file" - and have a code getting the right answer and never got WA(wrong answer) - let us call it "answer file" - you can simply give them random test cases to both of them and compare the output of each one to another. If the output of "myCode file" differs form "answer file" then you have a test fails "myCode file". This is the simple idea and what our project do. I made this project to help me test my code easily, specially I do competitive programming most of time.
 
 
 # How project works
 project has 6 files:
   1) "myCode.cpp" where code you want to test should be in.
-  2) "answer.cpp" where code generates the wright answer should be in.
+  2) "answer.cpp" where code generates the right answer should be in.
   3) "input.in" file where input will be generated in.
   4) "output.out" file where "myCode.cpp" will print its output in.
   5) "answer.out" file where "answer.cpp" will print its output in.
