@@ -10,43 +10,41 @@ Note: there are some functions like "buildHugeNumber" in line 15, helping you to
 */
 
 #include <bits/stdc++.h>
+#include "Admin/admin.h"
+#include "Checker/compare_files.h"
+#include "Tools/tools.h"
+
 using namespace std;
 
-string buildHugeNumber(int n){ // string of random number of n digit
-    string str(n, ' ');
-    for(int i = 0; i < n; ++i){
-        str[i] = '0' + (rand() % 9);
-    }
-    return str;
-}
 
-long long randll(){ // random long long
-    return (long long)rand() * rand() * rand() * rand();
-}
-
-void buildTests(){
+void buildTests()
+{
     ofstream in("input.in");
 
     // build here random test case
 
     int test_case = 1; // number of test cases
     in << test_case << "\n";
-    while(test_case--){
-        int array_size = rand() % 100 + 1; // size of array
+    while (test_case--)
+    {
+        int array_size = rnd(1, 100); // size of array
         in << array_size << "\n";
         int MAX_VALUE = 1e9;
-        for(int i = 0; i < array_size; ++i){ // printing array
-            int x = randll() % MAX_VALUE + 1;
+        for (int i = 0; i < array_size; ++i)
+        { // printing array
+            int x = rndll(1, MAX_VALUE);
             in << x << " ";
         }
         in << "\n";
 
-        int query = rand() % 100 + 1; // number of queries
+        int query = rnd(1, 100); // number of queries
         in << query << "\n";
-        for(int i = 0; i < query; ++i){
-            int l = rand() % array_size; // random number from 0 to n-1
-            int r = rand() % array_size; // random number from 0 to n-1
-            if(r < l) swap(l, r); // garantee that l < r.
+        for (int i = 0; i < query; ++i)
+        {
+            int l = rnd(0, array_size); // random number from 0 to n-1
+            int r = rnd(0, array_size); // random number from 0 to n-1
+            if (r < l)
+                swap(l, r); // garantee that l < r.
             in << l << " " << r << "\n";
         }
     }
@@ -54,72 +52,42 @@ void buildTests(){
     in.close(); // close file input.in
 }
 
-void build(){ // build myCode.cpp and answer.cpp
-    int _;
-    _ = system("g++ -o output.exe myCode.cpp");
-    _ = system("g++ -o answer.exe answer.cpp");
-}
 
-void run(){ // excute answer.exe and output.exe
-    int _;
-    _ = system("answer.exe < input.in > answer.out");
-    _ = system("output.exe < input.in > output.out");
-}
+int main()
+{
+    // number of test cases
+    const int tc = 10;
 
-void get_files(vector<string>& out_vec, vector<string>& ans_vec){
-    string temp;
+    // files' names
+    const string 
+    code_to_test = "myCode",
+    ref_code = "answer",
+    input_file = "input",
+    code_to_test_output_file = "output",
+    ref_code_output_file = "answer";
 
-    ifstream out_file("output.out");
-    while(getline(out_file, temp)){
-        out_vec.emplace_back(temp);
-    }
-    out_file.close();
+    Admin admin = Admin(code_to_test, ref_code, input_file, code_to_test_output_file, ref_code_output_file);
+    // build files of code & answer once
+    admin.build();
 
-    ifstream ans_file("answer.out");
-    while(getline(ans_file, temp)){
-        ans_vec.emplace_back(temp);
-    }
-    ans_file.close();
-}
+    CompareFiles cf = CompareFiles(code_to_test_output_file, ref_code_output_file);
 
-bool check(){
-    vector<string> out;
-    vector<string> ans;
 
-    get_files(out, ans);
-
-    if((int)out.size() != (int)ans.size()){
-        cout << "files has no equel sizes\n";
-        return false;
-    }
-
-    int i = 0;
-    for(; i < (int)out.size() && i < (int)ans.size(); ++i){
-        if(ans[i] != out[i]){
-            cout << "WA in line " << i+1 << "\nexpected " << ans[i] << ", but found " << out[i] << "\n";
-            return false;
-        }
-    }
-
-    return true;
-}
-
-int main(){
-    srand(time(0)); // make random values depending on time of running.
-    
-    build(); // build files of code & answer once
-    int tc = 100; // number of test cases
-    for(int i = 1; i <= tc; ++i){
+    for (int i = 1; i <= tc; ++i)
+    {
         cout << "test " << i << ":\n";
         buildTests();
-        run();
-        if(!check()){
+        admin.run();
+        if (!cf.compare())
+        {
             cout << "failed in test " << i << "\n";
             break;
-        }else{
+        }
+        else
+        {
             cout << "AC\n";
         }
     }
-    
+
     return 0;
 }
