@@ -14,14 +14,14 @@ void CompareFiles::get_files()
     answer_vec.clear();
     std::string temp;
 
-    std::ifstream out_file(code_output + ".out");
+    std::ifstream out_file(code_output);
 
     while (getline(out_file, temp))
         output_vec.emplace_back(temp);
 
     out_file.close();
 
-    std::ifstream ans_file(answer_output + ".out");
+    std::ifstream ans_file(answer_output);
     while (getline(ans_file, temp))
         answer_vec.emplace_back(temp);
     ans_file.close();

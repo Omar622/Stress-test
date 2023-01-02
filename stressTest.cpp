@@ -1,92 +1,51 @@
-/*
-All you have to do is:
-    1) set number of tests you want in "tc" variable in line 110
-    2) write code to build only one random test case in function "buildTests" in line 27
-    3) set your code in file "myCode.cpp".
-    4) set code that generates the refrence answer in file "answer.cpp".
-
-Note: there are some functions like "buildHugeNumber" in line 15, helping you to build random number of n digit.
-      also "randll" in line 23, helping to get random long long.
-*/
-
 #include <bits/stdc++.h>
-#include "Admin/admin.h"
-#include "Checker/compare_files.h"
+#include "file_control/file_control.h"
+#include "checker/compare_files.h"
 #include "Tools/tools.h"
 
 using namespace std;
 
-
-void buildTests()
-{
-    ofstream in("input.in");
-
-    // build here random test case
-
-    int test_case = 1; // number of test cases
-    in << test_case << "\n";
-    while (test_case--)
-    {
-        int array_size = rnd(1, 100); // size of array
-        in << array_size << "\n";
-        int MAX_VALUE = 1e9;
-        for (int i = 0; i < array_size; ++i)
-        { // printing array
-            int x = rndll(1, MAX_VALUE);
-            in << x << " ";
-        }
-        in << "\n";
-
-        int query = rnd(1, 100); // number of queries
-        in << query << "\n";
-        for (int i = 0; i < query; ++i)
-        {
-            int l = rnd(0, array_size); // random number from 0 to n-1
-            int r = rnd(0, array_size); // random number from 0 to n-1
-            if (r < l)
-                swap(l, r); // garantee that l < r.
-            in << l << " " << r << "\n";
-        }
-    }
-    // Example of code of random test is above.
-    in.close(); // close file input.in
-}
-
-
 int main()
 {
-    // number of test cases
-    const int tc = 10;
+    int tc; // number of test cases
 
-    // files' names
-    const string 
-    code_to_test = "myCode",
-    ref_code = "answer",
-    input_file = "input",
-    code_to_test_output_file = "output",
-    ref_code_output_file = "answer";
+    string cpp_test_file_path, cpp_answer_file_path;
+    cout << "Hello there!,\n\nenter test file path (expect cpp file): \n";
+    cin >> cpp_test_file_path;
+    cout << "enter answer file path (expect cpp file): \n";
+    cin >> cpp_answer_file_path;
+    cout << "enter number of test cases: \n";
+    cin >> tc;
 
-    Admin admin = Admin(code_to_test, ref_code, input_file, code_to_test_output_file, ref_code_output_file);
-    // build files of code & answer once
-    admin.build();
+    const string
+        input_file_path = "input.in",
+        output_test_file_path = "output.out",
+        output_answer_file_path = "answer.out",
+        build_random_test_file_path = "build_random_test.cpp";
 
-    CompareFiles cf = CompareFiles(code_to_test_output_file, ref_code_output_file);
+    FileControl fc_test = FileControl(cpp_test_file_path, input_file_path, output_test_file_path);
+    FileControl fc_answer = FileControl(cpp_answer_file_path, input_file_path, output_answer_file_path);
+    FileControl fc_build_tests = FileControl(build_random_test_file_path, "", input_file_path);
 
+    cout << "building...\n";
+    fc_test.build();
+    fc_answer.build();
+    fc_build_tests.build();
+    cout << "built successfully.\n\n";
+
+    CompareFiles cf = CompareFiles(output_test_file_path, output_answer_file_path);
 
     for (int i = 1; i <= tc; ++i)
     {
         cout << "test " << i << ":\n";
-        buildTests();
-        admin.run();
+        fc_build_tests.run();
+        fc_test.run();
+        fc_answer.run();
+
         if (!cf.compare())
-        {
-            cout << "failed in test " << i << "\n";
-            break;
-        }
+            return (cout << "failed in test " << i << "\n", 0);
         else
-        {
             cout << "AC\n";
-        }
     }
 
     return 0;
