@@ -25,7 +25,7 @@ long long rndll(long long a, long long b)
     return (1ll * mt() * mt()) % (b - a + 1) + a;
 }
 
-// string of random number of n digit
+// random number of n digit as string in O(n)
 std::string random_huge_number(int n)
 {
     std::string str(n, ' ');
@@ -35,8 +35,8 @@ std::string random_huge_number(int n)
     return str;
 }
 
-// random string of n digit
-std::string buildString(int n)
+// random string of n digit in O(n)
+std::string random_string(int n)
 {
     std::string str(n, ' ');
     for (int i = 0; i < n; ++i)
@@ -45,7 +45,7 @@ std::string buildString(int n)
     return str;
 }
 
-// rooted at vertex r
+// return 1-based random tree rooted at r (as n-1 edge in vector) in O(n)
 std::vector<std::pair<int, int>> random_tree(int n, int r)
 {
     std::vector<std::pair<int, int>> edges;
@@ -55,7 +55,7 @@ std::vector<std::pair<int, int>> random_tree(int n, int r)
     {
         if (u != r)
         {
-            int v = nodes[rand() % (int)(nodes.size())];
+            int v = nodes[rnd(0, nodes.size())];
             edges.push_back({u, v});
             nodes.emplace_back(u);
         }
