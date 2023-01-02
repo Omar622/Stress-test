@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#include "file_control/file_control.h"
+#include "file-control/file_control.h"
 #include "checker/compare_files.h"
-#include "Tools/tools.h"
+#include "tools/tools.h"
 
 using namespace std;
 
