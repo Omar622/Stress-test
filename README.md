@@ -9,9 +9,9 @@ All you have to do after downlad this project in your device is to:
   2. Run `stressTest.cpp` and it will interact with you to complete the stress test process.
 
 ## Note
-  1. The project only runs on `windows` and it needs `c++ `compiler (`g++` command should be working).
+  1. The project needs `c++ `compiler (`g++` command should be working).
   2. There are some helpful functions pre written for you. They may help in `generating random test code`
-      [see](https://github.com/Omar622/Stress-test/TOOLS.md)
+      [see](https://github.com/Omar622/Stress-test/blob/main/TOOLS.md)
 
 ## Upcoming
   Add fetures such as:
