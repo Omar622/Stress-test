@@ -1,125 +1,62 @@
-/*
-All you have to do is:
-    1) set number of tests you want in "tc" variable in line 110
-    2) write code to build only one random test case in function "buildTests" in line 27
-    3) set your code in file "myCode.cpp".
-    4) set code that generates the refrence answer in file "answer.cpp".
-
-Note: there are some functions like "buildHugeNumber" in line 15, helping you to build random number of n digit.
-      also "randll" in line 23, helping to get random long long.
-*/
-
 #include <bits/stdc++.h>
-using namespace std;
+#include "file-control/file_control.h"
+#include "checker/compare_files.h"
+#include "interact/interact.h"
+#include "tools/tools.h"
 
-string buildHugeNumber(int n){ // string of random number of n digit
-    string str(n, ' ');
-    for(int i = 0; i < n; ++i){
-        str[i] = '0' + (rand() % 9);
-    }
-    return str;
-}
-
-long long randll(){ // random long long
-    return (long long)rand() * rand() * rand() * rand();
-}
-
-void buildTests(){
-    ofstream in("input.in");
-
-    // build here random test case
-
-    int test_case = 1; // number of test cases
-    in << test_case << "\n";
-    while(test_case--){
-        int array_size = rand() % 100 + 1; // size of array
-        in << array_size << "\n";
-        int MAX_VALUE = 1e9;
-        for(int i = 0; i < array_size; ++i){ // printing array
-            int x = randll() % MAX_VALUE + 1;
-            in << x << " ";
-        }
-        in << "\n";
-
-        int query = rand() % 100 + 1; // number of queries
-        in << query << "\n";
-        for(int i = 0; i < query; ++i){
-            int l = rand() % array_size; // random number from 0 to n-1
-            int r = rand() % array_size; // random number from 0 to n-1
-            if(r < l) swap(l, r); // garantee that l < r.
-            in << l << " " << r << "\n";
-        }
-    }
-    // Example of code of random test is above.
-    in.close(); // close file input.in
-}
-
-void build(){ // build myCode.cpp and answer.cpp
-    int _;
-    _ = system("g++ -o output.exe myCode.cpp");
-    _ = system("g++ -o answer.exe answer.cpp");
-}
-
-void run(){ // excute answer.exe and output.exe
-    int _;
-    _ = system("answer.exe < input.in > answer.out");
-    _ = system("output.exe < input.in > output.out");
-}
-
-void get_files(vector<string>& out_vec, vector<string>& ans_vec){
-    string temp;
-
-    ifstream out_file("output.out");
-    while(getline(out_file, temp)){
-        out_vec.emplace_back(temp);
-    }
-    out_file.close();
-
-    ifstream ans_file("answer.out");
-    while(getline(ans_file, temp)){
-        ans_vec.emplace_back(temp);
-    }
-    ans_file.close();
-}
-
-bool check(){
-    vector<string> out;
-    vector<string> ans;
-
-    get_files(out, ans);
-
-    if((int)out.size() != (int)ans.size()){
-        cout << "files has no equel sizes\n";
-        return false;
-    }
-
-    int i = 0;
-    for(; i < (int)out.size() && i < (int)ans.size(); ++i){
-        if(ans[i] != out[i]){
-            cout << "WA in line " << i+1 << "\nexpected " << ans[i] << ", but found " << out[i] << "\n";
-            return false;
-        }
-    }
-
-    return true;
-}
-
-int main(){
-    srand(time(0)); // make random values depending on time of running.
+int main()
+{
+    const std::string
+        input_file_path = "inp-out/input.in",
+        output_test_file_path = "inp-out/output.out",
+        output_answer_file_path = "inp-out/answer.out",
+        build_random_test_file_path = "build_random_test.cpp",
+        saved_data_file_path = "data/interact.txt";
     
-    build(); // build files of code & answer once
-    int tc = 100; // number of test cases
-    for(int i = 1; i <= tc; ++i){
-        cout << "test " << i << ":\n";
-        buildTests();
-        run();
-        if(!check()){
-            cout << "failed in test " << i << "\n";
-            break;
-        }else{
-            cout << "AC\n";
-        }
+    FileControl::excuted_dir_path = "excuted-files/";
+
+    // program interact with user here.
+    Interact interact = Interact(saved_data_file_path);
+
+    // get data after end of interaction.
+    int number_of_test_cases = interact.get_number_of_test_cases();
+    std::string
+        cpp_test_file_path = interact.get_test_file_path(),
+        cpp_answer_file_path = interact.get_answer_file_path();
+
+    // preparing files for build and run
+    FileControl
+        fc_test = FileControl(cpp_test_file_path, input_file_path, output_test_file_path),
+        fc_answer = FileControl(cpp_answer_file_path, input_file_path, output_answer_file_path),
+        fc_build_tests = FileControl(build_random_test_file_path, "", input_file_path);
+
+    // prepare comparator
+    CompareFiles cf = CompareFiles(output_test_file_path, output_answer_file_path);
+
+    // building files
+    Interact::print_slow("building...");
+    fc_test.build();
+    fc_answer.build();
+    fc_build_tests.build();
+    Interact::print_slow("built successfully.");
+    std::cout << "\n\n\n";
+
+    // run test cases
+    for (int id = 1; id <= number_of_test_cases; ++id)
+    {
+        std::cout << "test " << id << ":\n";
+        // build random test
+        fc_build_tests.run();
+        // run both test and answer file
+        fc_test.run();
+        fc_answer.run();
+
+        // compare outputs
+        if (cf.compare())
+            std::cout << "status: PASSED\n";
+        else
+            return (std::cout << "status: FAILED in test " << id << "\n", 0);
     }
-    
+
     return 0;
 }
