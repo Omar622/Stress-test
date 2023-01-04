@@ -3,12 +3,12 @@
 
 class CompareFiles
 {
-    std::string code_output, answer_output; // files
+    std::string code_output, answer_output; // file paths
     std::vector<std::string> output_vec, answer_vec;
+    void get_files();
 
 public:
     CompareFiles(std::string, std::string);
-    void get_files();
     bool compare();
 };
 

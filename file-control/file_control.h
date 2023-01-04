@@ -8,11 +8,12 @@ class FileControl
     std::string path_to_name(std::string);
 
 public:
+    static std::string excuted_dir_path;
+    static void runCommand(std::string, std::string);
+
     FileControl(std::string, std::string, std::string);
     void build();
     void run();
-
-    static void runCommand(std::string, std::string);
 };
 
 #include "file_control.cpp"

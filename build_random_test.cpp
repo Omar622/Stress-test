@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
-#include "Tools/tools.h"
+/*
+    include all pre writtn functions
+    see: https://github.com/Omar622/Stress-test/TOOLS.md
+*/
+#include "tools/tools.h"
 
 using namespace std;
 
