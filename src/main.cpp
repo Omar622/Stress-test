@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-#include "file_control.h"
-#include "compare_files.h"
-#include "interact.h"
+#include "../include/file_control.h"
+#include "../include/compare_files.h"
+#include "../include/interact.h"
 
 int main()
 {
@@ -32,17 +32,17 @@ int main()
     for (int id = 1; id <= number_of_test_cases; ++id)
     {
         std::cout << "test " << id << ":\n";
-        // build random test
+        // build random test using generator
         generator_file_control.run();
-        // run both test and answer file
+        // run both test and answer files
         test_file_control.run();
         answer_file_control.run();
 
         // compare outputs
-        if (test_answer_comparator.compare())
+        if (test_answer_comparator.compare_lines())
             std::cout << "status: PASSED\n";
         else
-            return (std::cout << "status: FAILED in test " << id << "\n", 0);
+            return (std::cout << "status: FAILED in test " << id << "\n", 0); // report failed and return
     }
 
     return 0;

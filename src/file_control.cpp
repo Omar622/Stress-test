@@ -1,18 +1,19 @@
-#include <stdlib.h>
-#include <string>
 #include <iostream>
-#include <algorithm>
+#include <string>
+#include <stdlib.h>
 
-#include "file_control.h"
+#include "../include/file_control.h"
 
+// constructor read the executable, input and output files' paths
 FileControl::FileControl(std::string exe_file_path, std::string input_file_path, std::string output_file_path)
     : exe_file_path(exe_file_path), input_file_path(input_file_path), output_file_path(output_file_path) {}
 
-// excute exe_file
+// execute exe_file
 void FileControl::run()
 {
     std::string command = exe_file_path;
 
+    // handle the existence of input, output files
     if (input_file_path != "")
         command += " < " + input_file_path;
     if (output_file_path != "")

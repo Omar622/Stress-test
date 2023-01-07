@@ -3,46 +3,59 @@
 #include <string>
 #include <vector>
 
-#include "compare_files.h"
+#include "../include/compare_files.h"
 
-CompareFiles::CompareFiles(std::string code_output, std::string answer_output)
-    : code_output(code_output), answer_output(answer_output) {}
+// constructor reads files' paths
+CompareFiles::CompareFiles(std::string test_file_path, std::string ref_file_path)
+    : test_file_path(test_file_path), ref_file_path(ref_file_path) {}
 
-void CompareFiles::get_files()
+// just read files content into vectors
+void CompareFiles::read_files()
 {
-    output_vec.clear();
-    answer_vec.clear();
+    test_file_content.clear();
+    ref_file_content.clear();
     std::string line;
 
-    std::ifstream out_file(code_output);
+    // open test file
+    std::ifstream test_file(test_file_path);
+    // read content of test file into test file content
+    while (getline(test_file, line))
+    {
+        test_file_content.emplace_back(line);
+    }
+    // close test file
+    test_file.close();
 
-    while (getline(out_file, line))
-        output_vec.emplace_back(line);
-
-    out_file.close();
-
-    std::ifstream ans_file(answer_output);
-    while (getline(ans_file, line))
-        answer_vec.emplace_back(line);
-    ans_file.close();
+    // open ref file
+    std::ifstream ref_file(ref_file_path);
+    // read content of ref file into ref file content
+    while (getline(ref_file, line))
+    {
+        ref_file_content.emplace_back(line);
+    }
+    // close ref file
+    ref_file.close();
 }
 
-bool CompareFiles::compare()
+// compare files line by line (not ignoring whitespaces). return true if identical otherwise false
+bool CompareFiles::compare_lines()
 {
-    get_files();
+    // first read files
+    read_files();
 
-    if (output_vec.size() != answer_vec.size())
+    // it's not valid if files have no equal size
+    if (test_file_content.size() != ref_file_content.size())
     {
-        std::cout << "files have no equel sizes\n";
+        std::cout << "Comparator: Files have no equal sizes\n";
         return false;
     }
 
-    int i = 0;
-    for (; i < output_vec.size() and i < answer_vec.size(); ++i)
+    for (int i = 0; i < test_file_content.size(); ++i)
     {
-        if (answer_vec[i] != output_vec[i])
+        if (ref_file_content[i] != test_file_content[i])
         {
-            std::cout << "conflice in line " << i + 1 << "\nexpected " << answer_vec[i] << ", but found " << output_vec[i] << "\n";
+            std::cout << "Comparator: Conflict in line " << i + 1
+                      << "\nComparator: Expected " << ref_file_content[i] << ", but found " << test_file_content[i] << "\n";
             return false;
         }
     }
