@@ -4,6 +4,8 @@
 #include <string>
 #include <sys/stat.h>
 
+#include "../include/file_control.h"
+
 #include "../include/interact.h"
 
 /*
@@ -121,15 +123,15 @@ void Interact::save_new_data()
 // read data from user
 void Interact::enter_user_data()
 {
-    std::cout << "Please, enter executable file path you want to test. (Expect .exe file):\n";
+    std::cout << "Please, enter executable file path you want to test:\n";
     while (std::cin >> exe_test_file_path and check_exe_file_path(exe_test_file_path))
         std::cout << "INVALID INPUT.\n";
 
-    std::cout << "Enter the refrence executable file path. (Expect .exe file):\n";
+    std::cout << "Enter the refrence executable file path:\n";
     while (std::cin >> exe_answer_file_path and check_exe_file_path(exe_answer_file_path))
         std::cout << "INVALID INPUT.\n";
 
-    std::cout << "Enter the generator executable file path. (Expect .exe file):\n";
+    std::cout << "Enter the generator executable file path:\n";
     while (std::cin >> exe_generator_file_path and check_exe_file_path(exe_generator_file_path))
         std::cout << "INVALID INPUT.\n";
 
@@ -163,11 +165,8 @@ bool Interact::init()
     // create environment directory if it doesn't exist
     if (stat(dir_path.c_str(), &sb)) // if not exist
     {
-        if (mkdir(environment_dir_name.c_str()) == -1) // create directory
-        {
-            std::cerr << "Exception: couldn't create environment directory\n";
-            throw;
-        }
+        // call static method of file control class to run command on cmd
+        FileControl::runCommand("mkdir " + environment_dir_name, "Exception: couldn't create environment directory");
     }
     // create files if not exist
     bool is_there_data_saved = create_file_if_not_exist(saved_data_file_name);
