@@ -18,7 +18,7 @@ int main()
         answer_output_file_path = interact.get_answer_output_file_path();
     int number_of_test_cases = interact.get_number_of_test_cases();
 
-    // preparing files for run
+    // preparing files for running
     FileControl
         test_file_control = FileControl(exe_test_file_path, input_file_path, test_output_file_path),
         answer_file_control = FileControl(exe_answer_file_path, input_file_path, answer_output_file_path),
