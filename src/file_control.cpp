@@ -26,8 +26,5 @@ void FileControl::runCommand(std::string command, std::string error_message)
 {
     const char *command_cstr = command.c_str();
     if (system(command_cstr))
-    {
-        std::cerr << "Exception: " << error_message << "\n";
-        throw;
-    }
+        throw std::invalid_argument(error_message);
 }

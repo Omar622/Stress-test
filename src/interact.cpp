@@ -29,8 +29,7 @@ bool Interact::create_file_if_not_exist(std::string file_name)
         }
         catch (...)
         {
-            std::cerr << "Exception: couldn't create " << file_name << " file\n";
-            throw;
+            throw std::invalid_argument("couldn't create " + file_name + " file");
         }
         return 1;
     }
@@ -88,7 +87,7 @@ int Interact::read_non_negative_integer()
         {
             read_again = 1;
         }
-        
+
         if (read_again)
             std::cout << "INVALID NON-NEGATIVE INTEGER, please enter non-negative integer number.\n";
     }
