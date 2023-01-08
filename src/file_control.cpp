@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <stdlib.h>
 
 #include "../include/file_control.h"
 

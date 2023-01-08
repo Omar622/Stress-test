@@ -40,7 +40,7 @@ bool Interact::create_file_if_not_exist(std::string file_name)
 // helping method: return true if file not exist or not executable otherwise return false
 bool Interact::check_exe_file_path(std::string file_path)
 {
-    // check if it is .exe file
+    // check if it is .exe file or no extension
     int last_dot_index = file_path.find_last_of('.');
     if (~last_dot_index) // no '.' exist
     {
@@ -54,14 +54,6 @@ bool Interact::check_exe_file_path(std::string file_path)
                 return 1;
             }
         }
-        else
-        {
-            file_path += ".exe";
-        }
-    }
-    else
-    {
-        file_path += ".exe";
     }
 
     // Structure which would store the metadata
@@ -74,6 +66,33 @@ bool Interact::check_exe_file_path(std::string file_path)
     }
 
     return 0;
+}
+
+// read valid natural integer from user
+int Interact::read_non_negative_integer()
+{
+    int input_int;
+    bool read_again = 1;
+    while (read_again)
+    {
+        read_again = 0;
+        std::string input;
+        std::cin >> input;
+        try
+        {
+            input_int = stoi(input);
+            if (input_int < 0)
+                read_again = 1;
+        }
+        catch (...)
+        {
+            read_again = 1;
+        }
+        
+        if (read_again)
+            std::cout << "INVALID NON-NEGATIVE INTEGER, please enter non-negative integer number.\n";
+    }
+    return input_int;
 }
 
 // read saved data (last used data) from 'environment_dir/saved_data_file'
@@ -136,9 +155,7 @@ void Interact::enter_user_data()
         std::cout << "INVALID INPUT.\n";
 
     std::cout << "Enter number of tests.\n";
-    std::cin >> number_of_test_cases;
-    // in case user entered negative number.
-    number_of_test_cases = std::max(number_of_test_cases, 0);
+    number_of_test_cases = read_non_negative_integer();
 }
 
 // show current data (class fields) to user
@@ -185,17 +202,21 @@ Interact::Interact()
 {
     bool is_first_time = init();
 
-    std::string flag = "0";
+    int flag = 0;
     if (!is_first_time)
     {
         std::cout << "Last used data ^_^\n";
         print_saved_data();
         std::cout << "Enter 1 for use the last used data or enter 0 to use new data.\n";
-        while (std::cin >> flag and !(flag == "1" or flag == "0"))
+        flag = read_non_negative_integer();
+        while (flag > 1)
+        {
             std::cout << "INVALID INPUT. only 0 and 1 are valid.\n";
+            flag = read_non_negative_integer();
+        }
     }
 
-    if (flag == "0")
+    if (!flag)
     {
         enter_user_data();
         save_new_data();

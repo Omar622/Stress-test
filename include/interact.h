@@ -21,9 +21,9 @@ class Interact
     const std::string 
     environment_dir_name = "stress_test_env",
     saved_data_file_name = "data.txt",
-    input_file_name = "input.in",
-    test_output_file_name = "output.out",
-    answer_output_file_name = "answer.out";
+    input_file_name = "input.txt",
+    test_output_file_name = "output.txt",
+    answer_output_file_name = "answer.txt";
 
     // executable files and number of test cases that will be read from user.
     std::string exe_test_file_path, exe_answer_file_path, exe_generator_file_path;
@@ -34,6 +34,9 @@ class Interact
 
     // helping method: chech if it is exe file and it does exist.
     bool check_exe_file_path(std::string);
+
+    // read integer from user
+    int read_non_negative_integer();
 
     // read last used data from precreated environment into class fields.
     void read_saved_data();

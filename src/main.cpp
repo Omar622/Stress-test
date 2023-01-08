@@ -41,8 +41,14 @@ int main()
         // compare outputs
         if (test_answer_comparator.compare_lines())
             std::cout << "status: PASSED\n";
-        else
-            return (std::cout << "status: FAILED in test " << id << "\n", 0); // report failed and return
+        else{
+            // report failed and return
+            std::cout << "status: FAILED in test " << id << "\n";
+            std::cout << "you can find full test: " << input_file_path << "\n";
+            std::cout << "you can find full output: " << test_output_file_path << "\n";
+            std::cout << "you can find full refrence output: " << answer_output_file_path << "\n";
+            break;
+        }
     }
 
     return 0;
