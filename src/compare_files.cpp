@@ -1,8 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-
 #include "../include/compare_files.h"
 
 // constructor reads files' paths

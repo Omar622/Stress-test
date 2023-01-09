@@ -1,6 +1,9 @@
 #ifndef FILECONTROL_H
 #define FILECONTROL_H
 
+#include <iostream>
+#include <string>
+
 /**
  * @brief 
  * Definition of the CompareFiles class. it manages running of executable file 

@@ -1,6 +1,14 @@
 #ifndef INTERACT_H
 #define INTERACT_H
 
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <string>
+#include <sys/stat.h>
+
+#include "../include/file_control.h"
+
 /**
  * @brief 
  * Definition of the Interact class. it manages interaction with user 

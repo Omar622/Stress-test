@@ -1,6 +1,11 @@
 #ifndef COMPAREFILES_H
 #define COMPAREFILES_H
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
 /**
  * @brief 
  * Definition of the CompareFiles class. It contains two file path and compare them.

@@ -1,11 +1,3 @@
-#include <iostream>
-#include <algorithm>
-#include <fstream>
-#include <string>
-#include <sys/stat.h>
-
-#include "../include/file_control.h"
-
 #include "../include/interact.h"
 
 /*

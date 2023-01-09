@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-
 #include "../include/file_control.h"
 
 // constructor read the executable, input and output files' paths
