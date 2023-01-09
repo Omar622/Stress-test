@@ -137,7 +137,7 @@ void Interact::enter_user_data()
     while (std::cin >> exe_test_file_path and check_exe_file_path(exe_test_file_path))
         std::cout << "INVALID INPUT.\n";
 
-    std::cout << "Enter the refrence executable file path:\n";
+    std::cout << "Enter the reference executable file path:\n";
     while (std::cin >> exe_answer_file_path and check_exe_file_path(exe_answer_file_path))
         std::cout << "INVALID INPUT.\n";
 
@@ -154,7 +154,7 @@ void Interact::print_saved_data()
 {
     std::cout << "_______________________________________________________\n";
     std::cout << "path of the executable test file: " << exe_test_file_path << "\n";
-    std::cout << "path of the executable refrence file: " << exe_answer_file_path << "\n";
+    std::cout << "path of the executable reference file: " << exe_answer_file_path << "\n";
     std::cout << "path of the executable generator file: " << exe_generator_file_path << "\n";
     std::cout << "number of test cases: " << number_of_test_cases << "\n";
     std::cout << "_______________________________________________________\n";
