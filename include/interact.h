@@ -37,22 +37,28 @@ class Interact
     std::string exe_test_file_path, exe_answer_file_path, exe_generator_file_path;
     int number_of_test_cases;
 
+    // is it first time for user to use this tool?
+    bool is_first_use;
+
     // helping method: creates file if not exist. take file path as parameter
     bool create_file_if_not_exist(std::string);
 
-    // helping method: chech if it is exe file and it does exist.
+    // helping method: check if it is exe file and it does exist.
     bool check_exe_file_path(std::string);
 
     // read integer from user
-    int read_non_negative_integer();
+    int enter_non_negative_integer();
+
+    // enter path process from user
+    void enter_path(std::string, std::string&);
 
     // read last used data from precreated environment into class fields.
     void read_saved_data();
     // save current data (class fields) into environment for the future uses.
     void save_new_data();
 
-    // read needed input from user
-    void enter_user_data();
+    // // read needed input from user
+    // void enter_user_data();
     // show current data (class fields)
     void print_saved_data();
     
@@ -60,7 +66,7 @@ class Interact
         prepare environment (create missing files or dir).
         return false if saved_data_file not existing otherwise return true.
     */
-    bool init();
+    void init();
 
 public:
     // constructor: manage all the interaction process with user and call all methods.

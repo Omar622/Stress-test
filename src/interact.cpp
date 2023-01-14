@@ -28,7 +28,7 @@ bool Interact::create_file_if_not_exist(std::string file_name)
     return 0;
 }
 
-// helping method: return true if file not exist or not executable otherwise return false
+// helping method: return true if file exist and executable otherwise return false
 bool Interact::check_exe_file_path(std::string file_path)
 {
     // check if it is .exe file or no extension
@@ -42,7 +42,7 @@ bool Interact::check_exe_file_path(std::string file_path)
             if (last_dot_index != file_path.size() - 4 or file_path.substr(last_dot_index + 1) != "exe")
             {
                 std::cout << "Not .exe file. ";
-                return 1;
+                return 0;
             }
         }
     }
@@ -53,14 +53,14 @@ bool Interact::check_exe_file_path(std::string file_path)
     if (stat(file_path.c_str(), &sb))
     {
         std::cout << "File not exist. ";
-        return 1;
+        return 0;
     }
 
-    return 0;
+    return 1;
 }
 
 // read valid natural integer from user
-int Interact::read_non_negative_integer()
+int Interact::enter_non_negative_integer()
 {
     int input_int;
     bool read_again = 1;
@@ -84,6 +84,36 @@ int Interact::read_non_negative_integer()
             std::cout << "INVALID NON-NEGATIVE INTEGER, please enter non-negative integer number.\n";
     }
     return input_int;
+}
+
+// enter path process from user
+void Interact::enter_path(std::string required_file_path, std::string &read_in)
+{
+    while (true)
+    {
+        std::cout << "Enter the " << required_file_path << "\n";
+        if (!is_first_use)
+            std::cout << "or enter 1 to use the last used path\n";
+
+        std::string input;
+        std::cin >> input;
+
+        if (!is_first_use and input == "1")
+        {
+            if (check_exe_file_path(read_in))
+                return;
+        }
+        else
+        {
+            if (check_exe_file_path(input))
+            {
+                read_in = input;
+                return;
+            }
+        }
+
+        std::cout << "INVALID PATH.\n";
+    }
 }
 
 // read saved data (last used data) from 'environment_dir/saved_data_file'
@@ -130,25 +160,6 @@ void Interact::save_new_data()
     data_file.close();
 }
 
-// read data from user
-void Interact::enter_user_data()
-{
-    std::cout << "Please, enter executable file path you want to test:\n";
-    while (std::cin >> exe_test_file_path and check_exe_file_path(exe_test_file_path))
-        std::cout << "INVALID INPUT.\n";
-
-    std::cout << "Enter the reference executable file path:\n";
-    while (std::cin >> exe_answer_file_path and check_exe_file_path(exe_answer_file_path))
-        std::cout << "INVALID INPUT.\n";
-
-    std::cout << "Enter the generator executable file path:\n";
-    while (std::cin >> exe_generator_file_path and check_exe_file_path(exe_generator_file_path))
-        std::cout << "INVALID INPUT.\n";
-
-    std::cout << "Enter number of tests.\n";
-    number_of_test_cases = read_non_negative_integer();
-}
-
 // show current data (class fields) to user
 void Interact::print_saved_data()
 {
@@ -164,7 +175,7 @@ void Interact::print_saved_data()
     prepare environment (create missing files or dir).
     return false if saved_data_file not existing otherwise return true.
 */
-bool Interact::init()
+void Interact::init()
 {
     // Structure which would store the metadata
     struct stat sb;
@@ -177,39 +188,44 @@ bool Interact::init()
         FileControl::runCommand("mkdir " + environment_dir_name, "Exception: couldn't create environment directory");
     }
     // create files if not exist
-    bool is_there_data_saved = create_file_if_not_exist(saved_data_file_name);
+    // if saved_data_file not exist the program will suppose that it is the first use for the user.
+    is_first_use = create_file_if_not_exist(saved_data_file_name);
     create_file_if_not_exist(input_file_name);
     create_file_if_not_exist(test_output_file_name);
     create_file_if_not_exist(answer_output_file_name);
 
     // after environment is good, read saved data
     read_saved_data();
-
-    return is_there_data_saved;
 }
 
 // constructor: manage whole process and interact with user
 Interact::Interact()
 {
-    bool is_first_time = init();
+    init();
 
     int flag = 0;
-    if (!is_first_time)
+    if (!is_first_use)
     {
         std::cout << "Last used data ^_^\n";
         print_saved_data();
         std::cout << "Enter 1 for use the last used data or enter 0 to use new data.\n";
-        flag = read_non_negative_integer();
+        flag = enter_non_negative_integer();
         while (flag > 1)
         {
             std::cout << "INVALID INPUT. only 0 and 1 are valid.\n";
-            flag = read_non_negative_integer();
+            flag = enter_non_negative_integer();
         }
     }
 
     if (!flag)
     {
-        enter_user_data();
+        // enter user data
+        enter_path("executable file path you want to test:", exe_test_file_path);
+        enter_path("reference executable file path:", exe_answer_file_path);
+        enter_path("generator executable file path:", exe_generator_file_path);
+        std::cout << "Enter number of tests.\n";
+        number_of_test_cases = enter_non_negative_integer();
+        
         save_new_data();
         std::cout << "Data updated ^_^\n";
         print_saved_data();
