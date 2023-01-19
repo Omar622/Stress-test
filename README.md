@@ -31,7 +31,7 @@ The tool will run `generator` then run `test` and `answer` reading input form ge
     -   You can get stress test program from releases or by build `src\main.cpp` from the source code.
 -   The Stress Test program will then handle the rest, running both executable files with the same random input and comparing their output.
 
-![animation](https://drive.google.com/file/d/15gRj1mPn21tB8G43mISt0Ub9K0MMzhaD/view?usp=sharing)
+![stress-test-tool-github](https://user-images.githubusercontent.com/64589450/213480507-ecca4f60-2608-4d9d-9a26-cf9e5c1168e2.gif)
 
 ## Upcoming
 
