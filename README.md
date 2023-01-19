@@ -1,34 +1,37 @@
 # Stress Test
 
-Stress Test is a tool for comparing the output of two executable files given the same random input multiple times. This can be useful for testing the correctness of code or finding the case that cause code to fail.
+Stress Test is a tool for comparing the output of two executable files given the same random input multiple times.
+This can be useful for testing the correctness of code or finding the case that cause code to fail.
 
-## Requirements
+## Idea of stress test
 
--   The executable files for the code being tested and the reference code must be in the same format (e.g., both must be Windows executables or both must be Linux executables).
--   The generator code must produce input in a format that is compatible with both the code being tested and the reference code.
+Stress test can check correctness of the code and find a case causes code to fail if exist but how ? I would tell to you..
+Imagine you have code you want to test call it `test` and you have also a code that do the same task as `test` do call it `answer`
+then you should implement code generates random input every time you run it call it `generator` (assumed `test` and `answer` take same input in the same format).
+After that you would give the binary files of `test`, `answer` and `generator` to the stress test tool and it will make the whole test for you.
+The tool will run `generator` then run `test` and `answer` reading input form generator output then check if their outputs are identical. The tool will make this process multiple times and if the outputs are identical in all times that means your `test` is correct otherwise it will give you the case that fails `test`.
 
-## Usage
+## Notes
 
--   Write code to generate random input for both the code being tested and the reference code.
--   Run the Stress Test program, specifying the paths to the executable files for the code being tested, the reference code, and the generator code.
+1. The `generator` output is the input of `test` and `answer` and it must be compatible with the way `test` and `answer` reading input.
+2. Stress test program is a executable `c++` code.
+3. The tool works for windows and linux.
+
+## Features
+
+1. It doesn't matter the programming languages only the executable files are needed.
+2. The tool saves the last used executable files' paths.
+
+## How to use
+
+-   Impelement the `generator` file then build it and remember its executable file path.
+    -   If you use `c++` this [library](https://github.com/Omar622/Random-generator) will help you a lot to generate random stuff.
+-   Build `test` and `answer` and remember their executable files paths.
+-   Run the Stress Test program, specifying the paths to `test`, `answer`, and `generator`.
+    -   You can get stress test program from releases or by build `src\main.cpp` from the source code.
 -   The Stress Test program will then handle the rest, running both executable files with the same random input and comparing their output.
 
-## Overview
-
-Many and many times in competitve programming when you have a solution got WA (wrong answer) and you are suffering and can not find a case fails your code. Now, you have to stress test your code. The idea of stress test is to give random input (test case) to code you know (or feel) it fails at some case and give the same input to code you are sure it is correct then compare the output of both codes and report the status wether it is identical or conflict. In this project you give the both codes and write code to generate suitable random input so the project manages all the rest for you, it will generate multiple test cases and tell you the case that fail your code. Basically, I made this project to help me test my code easily. Especially when I was doing competitive programming most of time.
-
-## How to use project
-
-All you have to do after downlad this project in your device is to:
-
-1. Write code that generates suitable random input in `build_random_test.cpp`.
-2. Run `stressTest.cpp` and it will interact with you to complete the stress test process.
-
-## Note
-
-1. The project needs `c++ `compiler (`g++` command should be working).
-2. There are some helpful functions pre written for you. They may help in `generating random test code`
-   [see](https://github.com/Omar622/Stress-test/blob/main/TOOLS.md)
+![animation](https://drive.google.com/file/d/15gRj1mPn21tB8G43mISt0Ub9K0MMzhaD/view?usp=sharing)
 
 ## Upcoming
 
