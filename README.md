@@ -10,6 +10,7 @@ Imagine you have code you want to test call it `test` and you have also a code t
 then you should implement code generates random input every time you run it call it `generator` (assumed `test` and `answer` take same input in the same format).
 After that you would give the binary files of `test`, `answer` and `generator` to the stress test tool and it will make the whole test for you.
 The tool will run `generator` then run `test` and `answer` reading input form generator output then check if their outputs are identical. The tool will make this process multiple times and if the outputs are identical in all times that means your `test` is correct otherwise it will give you the case that fails `test`.
+![Blank diagram - stress test](https://user-images.githubusercontent.com/64589450/213805138-bfba0c9b-be47-424c-ad2b-42d545e50ad5.png)
 
 ## Notes
 
