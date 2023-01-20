@@ -1,2 +1,3 @@
 **/*.exe
+**/stress_test_env
 *.vscode
