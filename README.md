@@ -12,7 +12,7 @@ First, I would suppose you have the following:
 2. Refrence code or answer. It is a code does the same thing as `test` but you are sure it makes it correctly. build it and let us call its executable file `answer`.
 3. Generator code, every time this code is run it will output a valid random input for `test` and `answer`. build it and let us call its executable file `generator`.
 
-![Blank diagram - stress test](https://user-images.githubusercontent.com/64589450/213805138-bfba0c9b-be47-424c-ad2b-42d545e50ad5.png)
+![Blank diagram - stress test](https://user-images.githubusercontent.com/64589450/213823040-ee8804f2-6345-4751-98b6-8e336f5eef0d.svg)
 
 stress test program is doing the process shown in the figure above. Additionally, you can specify `number of test cases` (maximum number the cycle in the figure will repeat in case no conflict found in outputs)
 
