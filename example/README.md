@@ -12,7 +12,7 @@ This is example illustrating the idea of stress test and how to use it. (written
     - The code solves the same task by linear search
         - Loop for all numbers from 0 to 100000 and check if sum numbers form 0 to current number is equal to `N` or not.
         - Break from loop when number is found.
-3. Code generate random input every time I run it. (in file `generator`)
+3. Code generates random input every time I run it. (in file `generator`)
     - I used here [Random Generator](https://github.com/Omar622/Random-generator) to help me generates random stuff by `C++`.
 
 ## Using stress test
