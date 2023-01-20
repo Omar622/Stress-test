@@ -17,6 +17,7 @@ This is example illustrating the idea of stress test and how to use it. (written
 
 ## Using stress test
 
-After downloading stress test tool Here's illustrating Gif.
-![stress-test-example](https://user-images.githubusercontent.com/64589450/213821741-d9b214cd-758f-4b54-bd06-335ede0f9d4c.gif)
+After downloading stress test tool Here's illustrating video.
+https://user-images.githubusercontent.com/64589450/213822235-603a95e3-2113-4f64-8c9a-db3f55191023.mp4
+
 Note: stress test tool saves generated input and output in `stress_test_env`.
