@@ -3,6 +3,9 @@
 Stress Test is a tool for comparing the output of two executable files given the same random input multiple times.
 This can be useful for testing the correctness of code or finding the case that cause code to fail.
 
+![stress-test-tool-github](https://user-images.githubusercontent.com/64589450/213480507-ecca4f60-2608-4d9d-9a26-cf9e5c1168e2.gif)
+
+
 ## Idea of stress test
 
 Stress test can check correctness of the code and find a case causes the code to fail if exist but how ? I would tell to you.
@@ -35,8 +38,7 @@ stress test program is doing the process shown in the figure above. Additionally
 -   Run the Stress Test program, specifying the paths to `test`, `answer`, and `generator` and `number of test cases`.
     -   You can get stress test program from releases or by run `src\main.cpp` from the source code.
 -   The Stress Test program will then handle the rest, running all executable files and comparing outputs.
-
-![stress-test-tool-github](https://user-images.githubusercontent.com/64589450/213480507-ecca4f60-2608-4d9d-9a26-cf9e5c1168e2.gif)
+-   See [Example](https://github.com/Omar622/Stress-test/tree/main/example) for more clarificationز
 
 ## Upcoming
 
