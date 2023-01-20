@@ -38,7 +38,7 @@ stress test program is doing the process shown in the figure above. Additionally
 -   Run the Stress Test program, specifying the paths to `test`, `answer`, and `generator` and `number of test cases`.
     -   You can get stress test program from releases or by run `src\main.cpp` from the source code.
 -   The Stress Test program will then handle the rest, running all executable files and comparing outputs.
--   See [Example](https://github.com/Omar622/Stress-test/tree/main/example) for more clarificationز
+-   See [Example](https://github.com/Omar622/Stress-test/tree/main/example) for more clarification.
 
 ## Upcoming
 
