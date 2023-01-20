@@ -24,3 +24,7 @@ https://user-images.githubusercontent.com/64589450/213822235-603a95e3-2113-4f64-
 As you can see the formula is working and `test` code is correct.
 
 Note: stress test tool saves generated input and output in `stress_test_env`.
+
+Here's `input`, `output`, and `answer` files content within running stress test.
+
+https://user-images.githubusercontent.com/64589450/213824843-38376119-4b01-4a66-8c4c-7878967a6b01.mp4
