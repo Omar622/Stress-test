@@ -3,8 +3,9 @@
 Stress Test is a tool for comparing the output of two executable files given the same random input multiple times.
 This can be useful for testing the correctness of code or finding the case that cause code to fail.
 
-![stress-test-tool-github](https://user-images.githubusercontent.com/64589450/213480507-ecca4f60-2608-4d9d-9a26-cf9e5c1168e2.gif)
+![stress-test](https://user-images.githubusercontent.com/64589450/213825858-04b50328-50b8-4745-a91b-45bad81b0f45.gif)
 
+*The above Gif shows stress test tool tests code that hardly fails.
 
 ## Idea of stress test
 
