@@ -22,17 +22,24 @@ stress test program is doing the process shown in the figure above. Additionally
 
 1. The `generator` output is the input of `test` and `answer` and it must be compatible with the way `test` and `answer` reading input.
 2. The tool works for windows and linux.
-3. Stress test program is a executable `c++` code.
+3. Stress test program is a executable `C++` code.
 
 ## Features
 
 1. It doesn't matter the programming languages only the executable files are needed.
 2. You can use the tool with the last used executablel files without entering their paths again.
-3. Toos is handling most common errors.
+3. You are the one who implement `generator`, you can implement anything.
+3. Tool is handling most common errors.
     - Check if the given path is exist.
     - Check if the file is executalbe.
     - Check valid integer or {0, 1} while reading input.
 3. Here's a [library](https://github.com/Omar622/Random-generator) will help you implementing generator if you a `C++` coder.
+
+## Limitations
+
+1. Need executable files and some programming languages doesn't generate executable files. (maybe there's tool generates executable files somewhere on Google such as pyinstaller for python)
+2. Output comparsion is string comparsion in current version. (whitespaces may lead to conflict)
+3. Probability of catching case causes code to fail if exist = `number of generated test cases * all possible cases fail code / all possible cases` in case the generator code generates fully random input.
 
 ## How to use
 
