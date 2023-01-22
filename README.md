@@ -75,14 +75,14 @@ In case you are interesting, here's life cycle of the tool from start to termina
     3. run `answer`.
         - input: `stress_test_env\intput.txt`.
         - output: `stress_test_env\answer.txt`.
-    4. compare `stress_test_env\output.txt` and `stress_test_env\answer.txt`. (string comparsion)
+    4. compare `stress_test_env\output.txt` and `stress_test_env\answer.txt`. (string comparsion in this version)
         - If no conflict.
             - If number of test cases is done, terminate the program.
             - otherwise go to `4. Start testing.`
         - otherwise terminate.
             - input causes `test` to fail could be found in `stress_test_env\intput.txt`.
-            - output of `test` in `stress_test_env\output.txt`.
-            - refrence answer in `stress_test_env\answer.txt`.
+            - output of `test` is in `stress_test_env\output.txt`.
+            - refrence answer is in `stress_test_env\answer.txt`.
 
 ## Upcoming
 
