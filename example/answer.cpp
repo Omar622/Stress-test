@@ -1,18 +1,14 @@
 #include<iostream>
-#include<cmath>
-
-// sum numbers form 1 to number
-long long sum_sequence(long long number){
-    return number * (number+1) / 2;
-}
 
 int main(){
     long long sum;
     std::cin >> sum;
     
     const int N = 1e5;
+    long long current_sum = 0;
     for(int i = 0; i <= N; ++i){
-        if(sum == sum_sequence(i)){
+        current_sum += i;
+        if(sum == current_sum){
             std::cout << i << "\n";
             break;
         }
