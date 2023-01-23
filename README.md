@@ -39,7 +39,14 @@ stress test program is doing the process shown in the figure above. Additionally
 
 1. Need executable files and some programming languages doesn't generate executable files. (maybe there's tool generates executable files somewhere on Google such as pyinstaller for python)
 2. Output comparsion is string comparsion in current version. (whitespaces may lead to conflict)
-3. Probability of catching case causes code to fail if exist = `number of generated test cases * all possible cases fail code / all possible cases` in case the generator code generates fully random input.
+3. Probability of catching case causes code to fail if exist
+    - $$ = {F \over A} \sum_{i=0}^{N-1} \left(A-F \over A \right)^i $$
+        - Suppose:
+            - Code `generator` generates fully randomized cases.
+            - `N` is number of test cases run.
+            - `A` is number of all possible valid input.
+            - `F` is number of all possible failed cases.
+            - So `F - A` is number of all possible passed cases.
 
 ## How to use
 
